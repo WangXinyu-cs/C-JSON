@@ -4,6 +4,7 @@ SYNTAX = rfc8259
 all: libjson.so
 
 libjson.so: json.cpp $(SYNTAX).lex.c $(SYNTAX).tab.c
+	@if [ ! -d ../lib ]; then mkdir ../lib; fi
 	c++ -g -shared -fPIC $^ -I../include -o ../lib/$@
 
 $(SYNTAX).lex.c: $(SYNTAX).l
